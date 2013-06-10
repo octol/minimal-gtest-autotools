@@ -1,0 +1,35 @@
+minimal-gtest-autotools
+=======================
+
+This is a minimal template for using gtest (Google Test) in an Autotools
+project.
+
+http://github.com/octol/minimal-gtest-autotools
+
+Depends
+-------
+
+- C++ compiler
+- Autoconf
+- Automake
+- Libtool
+
+Build
+-----
+
+If you've obtained the template from Github (or any git repo) you need to
+generate all the necessary build scripts by running
+
+    autoreconf -ivf
+
+With these in place then
+
+    ./configure
+    make
+
+Run the tests with
+
+    make check
+
+Author: Jon Haggblad <jon@haeggblad.com>
+Mon, 10 Jun 2013
