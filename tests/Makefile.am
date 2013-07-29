@@ -1,6 +1,6 @@
 SUBDIRS = gtest
 SRC = $(srcdir)/../src
-AM_CPPFLAGS = -I$(SRC) $(GTEST_CPPFLAGS)
+AM_CPPFLAGS = -I$(SRC) -I$(srcdir)/gtest/include $(GTEST_CPPFLAGS)
 AM_CXXFLAGS = $(GTEST_CXXFLAGS)
 
 # TESTS -- Programs run automatically by "make check"
