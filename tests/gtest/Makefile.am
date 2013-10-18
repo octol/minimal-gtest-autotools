@@ -13,11 +13,3 @@ lib_libgtest_la_SOURCES = src/gtest-all.cc
 lib_libgtest_main_la_SOURCES = src/gtest_main.cc
 lib_libgtest_main_la_LIBADD = lib/libgtest.la
 
-EXTRA_DIST = src/gtest.cc \
-	     src/gtest-death-test.cc \
-	     src/gtest-filepath.cc \
-	     src/gtest-internal-inl.h \
-	     src/gtest-port.cc \
-	     src/gtest-printers.cc \
-	     src/gtest-test-part.cc \
-	     src/gtest-typed-test.cc
