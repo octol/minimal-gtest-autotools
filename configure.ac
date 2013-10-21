@@ -1,5 +1,5 @@
 AC_PREREQ([2.69])
-AC_INIT([minimal-gtest-autotools], [0.1.1], [jon@haeggblad.com])
+AC_INIT([minimal-gtest-autotools], [0.2.0], [jon@haeggblad.com])
 AC_CONFIG_SRCDIR([src/func.h])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_HEADERS([config.h])
@@ -11,6 +11,48 @@ LT_INIT
 AC_PROG_CC
 AC_PROG_CXX
 AC_LANG([C],[C++])
+
+# GCC specific configuration (optional)
+GCC_WARN_CXXFLAGS="-fdiagnostics-color=auto -Wall -Wextra -Wpedantic -Wfatal-errors"
+GCC_WARN_CXXFLAGS_EXTRA="-Wcast-align -Wcast-qual -Wformat -Wpointer-arith -Wwrite-strings"
+GCC_DEBUG_CXXFLAGS="-g -O0 -fno-omit-frame-pointer -fno-inline"
+
+# Check for GCC warning flags (optional)
+AC_MSG_CHECKING([whether to enable the GCC warnings])
+AC_ARG_ENABLE([gcc-warnings],
+    [AS_HELP_STRING([--enable-gcc-warnings],
+                    [turn on lots of GCC warnings (for developers)])],
+    [case "$enableval" in
+        yes|no) ;;
+        *)      AC_MSG_ERROR([bad value ${enableval} for gcc-warnings option]) ;; 
+    esac
+    gcc_warnings=$enableval],
+    [gcc_warnings=no]
+)
+AC_MSG_RESULT([$gcc_warnings])
+if test "$gcc_warnings" = yes; then
+    AC_SUBST([WARN_CXXFLAGS],"$GCC_WARN_CXXFLAGS $GCC_WARN_CXXFLAGS_EXTRA")
+fi
+
+# Check for GCC debug flags (optional)
+AC_MSG_CHECKING([whether to enable the GCC debug build])
+AC_ARG_ENABLE([gcc-debug],
+    [AS_HELP_STRING([--enable-gcc-debug],
+                    [turn on GCC debug flags (for developers)])],
+    [case "$enableval" in
+        yes|no) ;;
+        *)      AC_MSG_ERROR([bad value ${enableval} for gcc-debug option]) ;; 
+    esac
+    gcc_debug=$enableval],
+    [gcc_debug=no]
+)
+AC_MSG_RESULT([$gcc_debug])
+if test "$gcc_debug" = yes; then
+    AC_SUBST([CXXFLAGS],"$GCC_DEBUG_CXXFLAGS")
+    AC_DEFINE([DEBUG],[],[Debug Mode])
+else
+    AC_DEFINE([NDEBUG],[],[Release Mode])
+fi
 
 # Configure pthreads.
 ACX_PTHREAD([have_pthread=yes])
