@@ -1,4 +1,3 @@
-#m4_include(m4/acx_pthread.m4)
 AC_PREREQ([2.69])
 AC_INIT([minimal-gtest-autotools], [0.1.0], [jon@haeggblad.com])
 AC_CONFIG_SRCDIR([src/func.h])
@@ -16,7 +15,7 @@ AC_LANG([C],[C++])
 ACX_PTHREAD([have_pthread=yes])
 
 # Define gtest variables 
-GTEST_VERSION="1.6.0"
+GTEST_VERSION="1.7.0"
 if test "x$have_pthread" = "xyes"; then
   GTEST_CPPFLAGS="-DGTEST_HAS_PTHREAD=1"
   GTEST_CXXFLAGS="$PTHREAD_CFLAGS"
@@ -48,3 +47,27 @@ AC_CONFIG_FILES([Makefile
                  tests/Makefile
                  ])
 AC_OUTPUT
+
+AC_MSG_RESULT([
+minimal-gtest-autotools $VERSION is now configured
+Configure Information:
+  C Compiler        : $CC
+    DEFS            :   $DEFS
+    CPPFLAGS        :   $CPPFLAGS
+    CFLAGS          :   $CFLAGS
+
+  C++ Compiler      : $CXX
+    DEFS            :   $DEFS
+    CPPFLAGS        :   $CPPFLAGS
+    CXXFLAGS        :   $CXXFLAGS
+
+  Linker            : $LD
+    LDFLAGS         :   $LDFLAGS
+    LIBS            :   $LIBS
+
+  Google Test 
+    GTEST_CPPFLAGS  : $GTEST_CPPFLAGS
+    GTEST_CXXFLAGS  : $GTEST_CXXFLAGS
+    GTEST_LDFLAGS   : $GTEST_LDFLAGS
+    GTEST_LIBS      : $GTEST_LIBS
+])
