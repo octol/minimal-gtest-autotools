@@ -41,7 +41,7 @@ EXTRA_DIST += $(GTEST_SRC)
 
 # We define the global AM_CPPFLAGS as everything we compile includes from these
 # directories.
-AM_CPPFLAGS = -I$(srcdir) -I$(srcdir)/include
+AM_CPPFLAGS = -isystem $(srcdir)/include -I$(srcdir) $(GTEST_CPPFLAGS)
 AM_CXXFLAGS = $(GTEST_CXXFLAGS)
 AM_LDFLAGS = $(GTEST_LDFLAGS)
 LDADD = $(GTEST_LIBS)

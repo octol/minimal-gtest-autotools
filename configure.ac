@@ -1,9 +1,10 @@
 AC_PREREQ([2.69])
-AC_INIT([minimal-gtest-autotools], [0.1.0], [jon@haeggblad.com])
+AC_INIT([minimal-gtest-autotools], [0.1.1], [jon@haeggblad.com])
 AC_CONFIG_SRCDIR([src/func.h])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_HEADERS([config.h])
-AM_INIT_AUTOMAKE([foreign])
+AC_CONFIG_AUX_DIR([build-aux])
+AM_INIT_AUTOMAKE([foreign subdir-objects])
 LT_INIT
 
 # Checks for programs.
@@ -42,8 +43,9 @@ AC_SUBST([GTEST_LIBS])
 # Checks for library functions.
 
 AC_CONFIG_FILES([Makefile
+                 lib/Makefile
+                 lib/gtest/Makefile
                  src/Makefile
-                 tests/gtest/Makefile
                  tests/Makefile
                  ])
 AC_OUTPUT
