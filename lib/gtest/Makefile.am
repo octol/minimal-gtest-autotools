@@ -26,6 +26,7 @@ GTEST_SRC = \
   include/gtest/internal/gtest-filepath.h \
   include/gtest/internal/gtest-string.h \
   include/gtest/internal/gtest-tuple.h \
+  include/gtest/internal/gtest-port-arch.h \
   include/gtest/gtest.h \
   include/gtest/gtest-typed-test.h \
   include/gtest/gtest-message.h \
@@ -35,7 +36,7 @@ GTEST_SRC = \
   include/gtest/gtest-death-test.h \
   include/gtest/gtest-param-test.h \
   include/gtest/gtest-spi.h \
-  include/gtest/gtest_prod.h 
+  include/gtest/gtest_prod.h
 
 EXTRA_DIST += $(GTEST_SRC)
 
